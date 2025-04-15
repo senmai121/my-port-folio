@@ -1,6 +1,5 @@
-import Head from 'next/head'
-import React, { useState } from 'react';
-import axios from "axios";
+import React from 'react';
+
 import MainLayout  from "@/pages/MainLayout";
 
 const Home = () => {
