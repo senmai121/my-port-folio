@@ -1,11 +1,11 @@
 "use client";
-import React, { useState, useEffect ,useRef} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DOMPurify from 'dompurify';
 
 
 
-const fetchData = async (setData,data) => {
+const fetchData = async (setData) => {
     //setLoading(true); // ตั้งสถานะการโหลดเป็น true
 
   //  const [data, setData] = useState(null);
