@@ -2,10 +2,6 @@
 import React, { useState, useEffect ,useRef} from 'react';
 import axios from "axios";
 import DOMPurify from 'dompurify';
-import { useSearchParams } from "next/navigation";
-//import MainLayout  from "@/pages/MainLayout";
-
-import Button from '@/services/myButton'
 
 
 
@@ -15,18 +11,9 @@ const fetchData = async (setData,data) => {
   //  const [data, setData] = useState(null);
     try {
 
-        const username = "nes";
-        const password = "1q2w3e4r";
-        const token = btoa(username+":"+password);
 
-        //const response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        console.log(token)
-        const response = await axios.get('http://localhost:8080/jobs', {
+        const response  = await axios.get('/api/proxy', { params: { path: '/jobs' } })
 
-            method: "GET",
-            headers: {
-                Authorization: 'Basic '+token
-            }} );
         console.log("response",response)
         setData(response.data);
 
