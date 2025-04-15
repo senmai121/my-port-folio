@@ -7,7 +7,7 @@ import "./experiences";
 import { useState } from 'react';
 import Image from 'next/image';
 import Experience from "@/pages/experiences";
-import { Facebook, Linkedin ,Mail,Instagram } from 'lucide-react';
+import { Facebook, Linkedin ,Instagram } from 'lucide-react';
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState<'about' | 'projects' | 'contact'>('about');
