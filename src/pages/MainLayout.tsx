@@ -10,7 +10,7 @@ import Experience from "@/pages/experiences";
 import { Facebook, Linkedin ,Instagram } from 'lucide-react';
 
 export default function Home() {
-    const [activeSection, setActiveSection] = useState<'about' | 'projects' | 'contact'>('about');
+    const [activeSection, setActiveSection] = useState<'about' | 'experiences' | 'contact'>('about');
 
     const renderSection = () => {
         switch (activeSection) {
