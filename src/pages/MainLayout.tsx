@@ -35,6 +35,7 @@ export default function Home() {
                     <p className="text-tanorange text-lg">Senior Software Engineer</p>
                     <h1 className="text-3xl font-bold mt-2">Kanachai Niyomsilpchai</h1>
                 </div>
+
                 <div className="flex-1 flex justify-center items-start">
                     <Image
                         src="/images/IMG_3075.JPG"
