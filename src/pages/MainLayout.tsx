@@ -37,7 +37,7 @@ export default function Home() {
                 </div>
                 <div className="flex-1 flex justify-center items-start">
                     <Image
-                        src="/images/IMG_3075.jpg"
+                        src="/images/IMG_3075.JPG"
                         alt="My Profile"
                         width={128}
                         height={128}
