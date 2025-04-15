@@ -1,6 +1,7 @@
 import axios from 'axios';
+import type { NextApiRequest, NextApiResponse } from 'next';
 
-export default async function handler(req, res) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     const { path } = req.query;
 
     if (!path || typeof path !== 'string') {
@@ -29,10 +30,20 @@ export default async function handler(req, res) {
 
         res.status(axiosResponse.status).json(axiosResponse.data);
     } catch (error) {
-        console.error('Proxy error:', error.response?.data || error.message);
-        res.status(error.response?.status || 500).json({
-            error: 'Failed to fetch from backend',
-            detail: error.response?.data || error.message,
-        });
+
+        if (error instanceof Error) {
+          //  console.log(error.message);
+
+            res.status(500).json({
+                error: 'Failed to fetch from backend',
+                detail: error.message,
+            });
+        } else {
+            //console.log("Unknown error", error);
+            res.status(500).json({
+                error: 'Unknown error'
+            });
+        }
+
     }
 }
