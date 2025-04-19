@@ -12,6 +12,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const username = process.env.PORTFOLIO_API_USER;
     const password = process.env.PORTFOLIO_API_PASSWORD;
 
+    console.log("url",process.env.PORTFOLIO_API_URL)
+    console.log("user",process.env.PORTFOLIO_API_USER)
+
     const targetUrl = `${apiUrl}${path.startsWith('/') ? path : '/' + path}`;
 
     try {

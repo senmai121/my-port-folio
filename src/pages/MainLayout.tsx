@@ -28,7 +28,7 @@ export default function Home() {
             {/* Left Side - Fixed Name */}
 
 
-            <div className="lg:w-1/3 bg-[#0a192f] backdrop-opacity-50 w-full border-r border-gray-800 p-16 flex flex-col justify-top lg:sticky top-0 lg:h-screen sm:h-1/2">
+            <div className="lg:w-1/4 md:w-1/3 bg-[#0a192f] backdrop-opacity-50 w-full border-r border-gray-800 p-16 flex flex-col justify-top lg:sticky top-0 lg:h-screen sm:h-1/2">
 
                 {/*<div className="absolute inset-0 bg-white bg-white/30 backdrop-invert backdrop-opacity-30"></div>*/}
                 <div className="flex-1 relative z-10">
@@ -80,7 +80,7 @@ export default function Home() {
             </div>
 
             {/* Right Side - Dynamic Content  */}
-            <div className="lg:w-2/3 w-full p-10 lg:overflow-y-auto bg-cover bg-center min-h-screen bg-white">
+            <div className="lg:w-3/4 md:w-2/3 w-full p-10 lg:overflow-y-auto bg-cover bg-center min-h-screen bg-white">
 
 
                 <div className="transition-all duration-300 ease-in-out">
