@@ -29,7 +29,7 @@ const Experience = () => {
     useEffect(() => {
         //fetchData(setData);
 
-        axios.get<JobExperience[]>('/api/proxy', { params: { path: '/jobs' } }).then((response) => {
+        axios.get<JobExperience[]>('/api/proxy', { params: { path: '/job-experience' } }).then((response) => {
             setData(response.data);
         });
     }, []); // ทำงานครั้งเดียวเมื่อ component ถูก render
