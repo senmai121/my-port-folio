@@ -2,25 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DOMPurify from 'dompurify';
+import JobExperience from "@/models/JobExperience";
 
-type JobExperience = {
-    _id: string;
-    position: string;
-    company: string;
-    description: string;
-    start: string;
-    end: string;
-    skills: {
-        name: string;
-        level: string;
-    }[];
-}
+
 
 
 
 const Experience = () => {
     const [data, setData] = useState<JobExperience[]>([]);
-    const [loading] = useState(false);
+    const [loading,setLoading] = useState(false);
     const [error] = useState(null);
 
 
@@ -28,10 +18,19 @@ const Experience = () => {
     let section3=<div>Hello World, Error Load API</div>
     useEffect(() => {
         //fetchData(setData);
-
-        axios.get<JobExperience[]>('/api/proxy', { params: { path: '/job-experience' } }).then((response) => {
-            setData(response.data);
-        });
+        setLoading(true);
+        try {
+            axios.get<JobExperience[]>('/api/proxy', {params: {path: '/job-experience'}}).then((response) => {
+              //  setLoading(true);
+                setData(response.data);
+                //setLoading(false);
+            });
+        } catch (error) {
+            console.error('โหลดข้อมูลไม่สำเร็จ', error);
+            //setData('เกิดข้อผิดพลาดในการโหลดข้อมูล');
+        } finally {
+            setLoading(false);
+        }
     }, []); // ทำงานครั้งเดียวเมื่อ component ถูก render
 
 
@@ -47,7 +46,7 @@ const Experience = () => {
         section3 =
             <section className="article-list">
                 <div className="container">
-                    <h1 className="justify-center">My Work Experience</h1>
+                    <h1 className="justify-center text-[#0a192f] text-lg font-bold">My Work Experience</h1>
 
                         {data?.map((post) => (
 
@@ -61,7 +60,7 @@ const Experience = () => {
                                     <div className="mt-4 text-gray-600">
 
                                         <div
-                                            className="mt-2 text-sm text-gray-800"
+                                            className="mt-2 text-gray-800"
                                             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }}
                                         />
                                         <p className="mt-2 p-4">

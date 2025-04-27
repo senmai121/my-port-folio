@@ -1,25 +1,25 @@
 
 'use client';
 import "../app/globals.css"
-import "./experiences";
- // ถ้าใช้ app dir ของ Next 13+
+
+
 
 import { useState } from 'react';
 import Image from 'next/image';
 import Experience from "@/pages/experiences";
+import About from "@/pages/about";
 import { Facebook, Linkedin ,Instagram } from 'lucide-react';
 
 export default function Home() {
-    const [activeSection, setActiveSection] = useState<'about' | 'experiences' | 'contact'>('about');
+    const [activeSection, setActiveSection] = useState<'about' | 'experiences'>('about');
 
     const renderSection = () => {
         switch (activeSection) {
             case 'about':
-                return <p className="text-gray-300">This is the About section.</p>;
+                return <About />
             case 'experiences':
                 return <Experience />
-            case 'contact':
-                return <p className="text-gray-300">Get in touch at you@example.com</p>;
+
         }
     };
 
@@ -38,33 +38,30 @@ export default function Home() {
 
                 <div className="flex-1 flex justify-center items-start">
                     <Image
-                        src="/images/IMG_3075.JPG"
+                        src="/images/IMG_3970.JPG"
                         alt="My Profile"
-                        width={128}
-                        height={128}
+                        width={150}
+                        height={150}
                         className="rounded-full object-cover relative z-10  shadow-xl" loading="lazy"/>
 
                 </div>
                 <div className="flex-1 flex justify-start items-end">
-                <nav className="flex relative z-10 flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-4 text-2xl lg:items-start">
+                <nav className="flex relative z-10 flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-4 text-2xl lg:items-start sm:justify-center">
+                    <button
+                        className={`hover:text-bluesky ${activeSection === 'contact' ? 'text-tanorange' : ''}`}
+                        onClick={() => setActiveSection('about')}
+                    >
+                        About Me
+                    </button>
+
                     <button
                         className={`hover:text-bluesky ${activeSection === 'experiences' ? 'text-tanorange' : ''}`}
                         onClick={() => setActiveSection('experiences')}
                     >
                         Experiences
                     </button>
-                    <button
-                        className={`hover:text-bluesky ${activeSection === 'contact' ? 'text-tanorange' : ''}`}
-                        onClick={() => setActiveSection('contact')}
-                    >
-                        Education
-                    </button>
-                    <button
-                        className={`hover:text-bluesky ${activeSection === 'contact' ? 'text-tanorange' : ''}`}
-                        onClick={() => setActiveSection('about')}
-                    >
-                        Others
-                    </button>
+
+
                 </nav>
                 </div>
 
