@@ -29,7 +29,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     if (req.method === 'GET') {
         try {
-            const jobs = await JobExperience.find({});
+            const jobs = await JobExperience.find({}).sort({ start: -1 });
 
             const formattedJobs = jobs.map(job => ({
                 ...job.toObject(),
