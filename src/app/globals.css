@@ -40,12 +40,3 @@ body {
   font-family: Inter, sans-serif;
 }
 
-.bg-hero {
-  background-image: url(../../public/images/IMG_3970.JPG);
-  width: 100%;
-  background-size: cover; /* หรือ contain แล้วแต่ฟีลลิ่งที่อยากได้ */
-  background-position: center;
-  background-repeat: no-repeat;
-
-
-}
