@@ -75,8 +75,9 @@ const About = () => {
                             </div>
                             <hr className="border-gray-300"/>
                             <p className="m-4">
-                            <b>Date off Birth</b> 11/01/1984<br/>
-                            <b>Address</b> Thonburi, Bangkok 10600, Thailand
+                            <b>Date off Birth :</b> 11/01/1984<br/>
+                            <b>Address :</b> Thonburi, Bangkok 10600, Thailand<br/>
+                            <b>Education :</b> Bachelor of Computer Engineering ,Kasetsart University (GPA: 3.49)
                             </p>
 
 
@@ -123,6 +124,22 @@ const About = () => {
                                         <br/></span>
                                 ))}
                             </div>
+
+                        </div>
+                    </div>
+                    <br />
+                    <div className="md:pt-4 md:pl-4 md:pr-4" >
+
+                        <div className="flex bg-extralightgray flex-col p-4 rounded-xl text-gray-800" >
+                            <div className="flex justify-between items-center">
+                                <p className="font-bold text-tanorange">Certifications</p>
+
+                            </div>
+                            <hr className="border-gray-300"/>
+                            <p className="m-4">
+                               <li><a href="/doc/Kanachai Niyomslipchai-NetSuite Certified SuiteFoundation.pdf">Netsuite Suitefoundation 2024-2025</a></li>
+                            </p>
+
 
                         </div>
                     </div>
