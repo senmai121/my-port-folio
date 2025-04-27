@@ -1,15 +1,24 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-import DOMPurify from 'dompurify';
-import Skill from "@/models/Skill";
+
+
+
+export interface SkillType {
+    _id: string;
+    name: string;
+    level: string;
+    type: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+}
 
 
 
 
 
 const About = () => {
-    const [data, setData] = useState<Skill[]>([]);
+    const [data, setData] = useState<SkillType[]>([]);
     const [loading] = useState(false);
     const [error] = useState(null);
 
@@ -19,7 +28,7 @@ const About = () => {
     useEffect(() => {
         //fetchData(setData);
 
-        axios.get<Skill[]>('/api/proxy', { params: { path: '/skill' } }).then((response) => {
+        axios.get<SkillType[]>('/api/proxy', { params: { path: '/skill' } }).then((response) => {
             setData(response.data);
         });
     }, []); // ทำงานครั้งเดียวเมื่อ component ถูก render
@@ -35,13 +44,14 @@ const About = () => {
     {
         console.log("data",data);
 
-        let types =[...new Set(data.map(d=>d.type))];
-        let skills =[];
+        const types =[...new Set(data.map(d=>d.type))];
+        const skills =[];
         for(let i=0; i<types.length;i++)
         {
-            let tmp = data.filter(s=>s.type===types[i]);
-            let skill=
+            const tmp = data.filter(s=>s.type===types[i]);
+            const skill=
                 {
+                    _id : types[i],
                     type : types[i],
                     skills : tmp
                 }
@@ -103,10 +113,10 @@ const About = () => {
                             <div className="m-4">
                             {skills?.map((skilltype) =>
                                 (
-                                    <span >
+                                    <span key={skilltype._id}>
                                         <b>{skilltype.type}</b><br/>
                                         {skilltype.skills?.map((skill) => (
-                                            <span key={skill.name+"_space"}><span key={skill.name} className="rounded-xl bg-yellow-200 border border-yellow-300"> &nbsp;{skill.name}&nbsp; </span>&nbsp;</span>
+                                            <span key={skill._id+"_space"}><span key={skill.name} className="rounded-xl bg-yellow-200 border border-yellow-300"> &nbsp;{skill.name}&nbsp; </span>&nbsp;</span>
                                         ))}
 
                                         <br/></span>

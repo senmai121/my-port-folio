@@ -2,14 +2,29 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
 import DOMPurify from 'dompurify';
-import JobExperience from "@/models/JobExperience";
 
 
+export interface Skill {
+    name: string;
+    level: string;
+}
+
+export interface JobExperienceType {
+    _id?: string;             // เพราะเวลา fetch จาก MongoDB จะมี _id
+    position: string;
+    company: string;
+    description: string;
+    start: string;
+    end: string;
+    skills: Skill[];
+    createdAt?: Date;
+    updatedAt?: Date;
+}
 
 
 
 const Experience = () => {
-    const [data, setData] = useState<JobExperience[]>([]);
+    const [data, setData] = useState<JobExperienceType[]>([]);
     const [loading,setLoading] = useState(false);
     const [error] = useState(null);
 
@@ -20,7 +35,7 @@ const Experience = () => {
         //fetchData(setData);
         setLoading(true);
         try {
-            axios.get<JobExperience[]>('/api/proxy', {params: {path: '/job-experience'}}).then((response) => {
+            axios.get<JobExperienceType[]>('/api/proxy', {params: {path: '/job-experience'}}).then((response) => {
               //  setLoading(true);
                 setData(response.data);
                 //setLoading(false);

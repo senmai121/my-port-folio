@@ -48,7 +48,7 @@ export default function Home() {
                 <div className="flex-1 flex justify-start items-end">
                 <nav className="flex relative z-10 flex-row md:flex-col space-x-4 md:space-x-0 md:space-y-4 text-2xl lg:items-start sm:justify-center">
                     <button
-                        className={`hover:text-bluesky ${activeSection === 'contact' ? 'text-tanorange' : ''}`}
+                        className={`hover:text-bluesky ${activeSection === 'about' ? 'text-tanorange' : ''}`}
                         onClick={() => setActiveSection('about')}
                     >
                         About Me
