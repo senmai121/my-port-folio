@@ -30,11 +30,11 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     if (req.method === 'GET') {
         try {
             const jobs = await JobExperience.find({}).sort({ start: -1 });
-
+         //   console.log("jobs",jobs)
             const formattedJobs = jobs.map(job => ({
                 ...job.toObject(),
                 start: format(new Date(job.start), 'MMM-yyyy'),
-                end: format(new Date(job.end), 'MMM-yyyy'),
+                end: (job.end ? format(new Date(job.end), 'MMM-yyyy') : "Present"),
             }));
             return res.status(200).json(formattedJobs);
         } catch (err: unknown) {
