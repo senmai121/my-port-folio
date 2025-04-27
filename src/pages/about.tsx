@@ -66,7 +66,7 @@ const About = () => {
 
                     <h1 className="justify-center text-[#0a192f] text-lg font-bold">About Me</h1>
 
-                    <div className="p-4" >
+                    <div className="md:pt-4 md:pl-4 md:pr-4" >
 
                         <div className="flex bg-extralightgray flex-col p-4 rounded-xl text-gray-800" >
                             <div className="flex justify-between items-center">
@@ -82,7 +82,8 @@ const About = () => {
 
                         </div>
                     </div>
-                    <div className="p-4" >
+                    <br/>
+                    <div className="md:pt-4 md:pl-4 md:pr-4" >
 
                         <div className="flex bg-extralightgray flex-col p-4 rounded-xl text-gray-800 no-underline">
 
@@ -99,9 +100,9 @@ const About = () => {
                                 <li>Usually work with complicate business process</li>
                             </u>
                         </div>
-                    </div>
+                    </div><br/>
 
-                    <div className="p-4" >
+                    <div className="md:pt-4 md:pl-4 md:pr-4" >
 
                         <div className="flex bg-extralightgray flex-col p-4 rounded-xl text-gray-800 no-underline">
 

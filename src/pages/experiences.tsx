@@ -65,7 +65,7 @@ const Experience = () => {
 
                         {data?.map((post) => (
 
-                            <div className="p-4" key={post._id}>
+                            <div className="md:pt-4 md:pl-4 md:pr-4"  key={post._id}>
                                 <div className="flex bg-extralightgray flex-col p-4 rounded-xl">
                                     <div className="flex justify-between items-center">
                                         <p className="font-bold text-tanorange">{post.position}<br/><span className="text-black">{post.company}</span></p>
@@ -78,7 +78,8 @@ const Experience = () => {
                                             className="mt-2 text-gray-800"
                                             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }}
                                         />
-                                        <p className="mt-2 p-4">
+                                        <p className="mt-2">
+
                                             <strong>Skill Used :</strong>
                                             {post.skills?.map((skill) =>
                                                 (
@@ -87,7 +88,7 @@ const Experience = () => {
                                         </p>
                                     </div>
                                 </div>
-
+                                <br/>
                             </div>
                         ))}
 
