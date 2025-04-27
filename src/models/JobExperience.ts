@@ -5,8 +5,8 @@ const JobExperienceSchema = new mongoose.Schema({
     position: { type: String, required: true },
     company: { type: String, required: true },
     description: { type: String, required: true },
-    start: { type: Date, required: true },   // เปลี่ยนเป็น Date
-    end: { type: Date, required: true },     // เปลี่ยนเป็น Date
+    start: { type: Date, required: true },
+    end: { type: Date, required: false },
     skills: [
         {
             name: String,
