@@ -2,6 +2,10 @@ import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    if (req.method !== 'GET') {
+        return res.status(405).json({ error: 'Method Not Allowed' });
+    }
+
     const { path } = req.query;
 
     if (!path || typeof path !== 'string') {
@@ -12,41 +16,32 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const username = process.env.PORTFOLIO_API_USER;
     const password = process.env.PORTFOLIO_API_PASSWORD;
 
-    console.log("url",process.env.PORTFOLIO_API_URL)
-    console.log("user",process.env.PORTFOLIO_API_USER)
+    console.log("url", apiUrl);
+    console.log("user", username);
 
     const targetUrl = `${apiUrl}${path.startsWith('/') ? path : '/' + path}`;
 
     try {
-        const axiosResponse = await axios({
-            method: req.method,
-            url: targetUrl,
+        const axiosResponse = await axios.get(targetUrl, {
             headers: {
                 Authorization:
                     'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
                 'Content-Type': 'application/json',
-                // คัดลอก header เพิ่มเติมตามต้องการ เช่น cookies
                 ...(req.headers.cookie && { cookie: req.headers.cookie }),
             },
-            data: req.body, // สำหรับ POST, PUT, PATCH
         });
 
         res.status(axiosResponse.status).json(axiosResponse.data);
     } catch (error) {
-
         if (error instanceof Error) {
-          //  console.log(error.message);
-
             res.status(500).json({
                 error: 'Failed to fetch from backend',
                 detail: error.message,
             });
         } else {
-            //console.log("Unknown error", error);
             res.status(500).json({
                 error: 'Unknown error'
             });
         }
-
     }
 }
