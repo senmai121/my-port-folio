@@ -8,7 +8,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Experience from "@/pages/experiences";
 import About from "@/pages/about";
-import { Facebook, Linkedin ,Instagram } from 'lucide-react';
+import {Linkedin  } from 'lucide-react';
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState<'about' | 'experiences'>('about');
@@ -65,13 +65,12 @@ export default function Home() {
                 </nav>
                 </div>
 
-                <div className="flex-1 flex items-end justify-center relative z-10">
+                <div className="flex-1 flex items-end justify-end relative z-10">
                     <div className="flex space-x-4  space-y-4">
-                        <a href="https://www.facebook.com/nes.kanachai" target="_blank" rel="noopener noreferrer">
-                            <Facebook className="w-6 h-6 text-gray-300"  /></a>
+
                         <a href="https://www.linkedin.com/in/kanachai-niyomsilpchai-674671141/" target="_blank" rel="noopener noreferrer">
                             <Linkedin className="w-6 h-6 text-gray-300" /></a>
-                        <a href="https://www.instagram.com/nessuke121/" target="_blank" rel="noopener noreferrer"><Instagram className="w-6 h-6 text-gray-300" /></a>
+
                     </div>
                 </div>
             </div>
