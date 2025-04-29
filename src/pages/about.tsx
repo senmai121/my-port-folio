@@ -19,30 +19,42 @@ export interface SkillType {
 
 const About = () => {
     const [data, setData] = useState<SkillType[]>([]);
-    const [loading] = useState(false);
-    const [error] = useState(null);
+    const [loading,setLoading] = useState(false);
 
 
 
-    let section3=<div>Hello World, Error Load API</div>
+
+
     useEffect(() => {
         //fetchData(setData);
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get<SkillType[]>('/api/proxy', {
+                    params: { path: '/skill' },
+                });
+                setData(response.data);
+            } catch (error) {
+                console.error('โหลดข้อมูลไม่สำเร็จ', error);
 
-        axios.get<SkillType[]>('/api/proxy', { params: { path: '/skill' } }).then((response) => {
-            setData(response.data);
-        });
-    }, []); // ทำงานครั้งเดียวเมื่อ component ถูก render
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    else if (error) {
-        return <div>Error: {error}</div>;
-    }
-    else
-    {
-        console.log("data",data);
+    // if (loading) {
+    //     return <div>Loading...</div>;
+    // }
+    // else if (error) {
+    //     return <div>Error: {error}</div>;
+    // }
+    // else
+    // {
+
 
         const types =[...new Set(data.map(d=>d.type))];
         const skills =[];
@@ -60,8 +72,7 @@ const About = () => {
 
 
 
-        section3 =
-            <section className="article-list">
+        return <section className="article-list">
                 <div className="container">
 
                     <h1 className="justify-center text-[#0a192f] text-lg font-bold">About Me</h1>
@@ -112,6 +123,7 @@ const About = () => {
 
                             </div>
                             <hr className="border-gray-300"/>
+                            {loading ? <div className="m-4">Loading..</div>:
                             <div className="m-4">
                             {skills?.map((skilltype) =>
                                 (
@@ -124,6 +136,7 @@ const About = () => {
                                         <br/></span>
                                 ))}
                             </div>
+                            }
 
                         </div>
                     </div>
@@ -151,11 +164,11 @@ const About = () => {
 
                 </div>
             </section>
-    }
 
 
 
-    return section3
+
+
 }
 
 export default About

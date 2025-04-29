@@ -26,40 +26,42 @@ export interface JobExperienceType {
 const Experience = () => {
     const [data, setData] = useState<JobExperienceType[]>([]);
     const [loading,setLoading] = useState(false);
-    const [error] = useState(null);
+    const [error,setError] = useState(false);
 
 
 
-    let section3=<div>Hello World, Error Load API</div>
+
     useEffect(() => {
         //fetchData(setData);
-        setLoading(true);
-        try {
-            axios.get<JobExperienceType[]>('/api/proxy', {params: {path: '/job-experience'}}).then((response) => {
-              //  setLoading(true);
+        const fetchData = async () => {
+            setLoading(true);
+            try {
+                const response = await axios.get<JobExperienceType[]>('/api/proxy', {
+                    params: { path: '/job-experience' },
+                });
                 setData(response.data);
-                //setLoading(false);
-            });
-        } catch (error) {
-            console.error('โหลดข้อมูลไม่สำเร็จ', error);
-            //setData('เกิดข้อผิดพลาดในการโหลดข้อมูล');
-        } finally {
-            setLoading(false);
-        }
-    }, []); // ทำงานครั้งเดียวเมื่อ component ถูก render
+            } catch (error) {
+                console.error('โหลดข้อมูลไม่สำเร็จ', error);
+                setError(true);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <div className="text-lg text-black">Loading Job Experience...</div>;
     }
     else if (error) {
         return <div>Error: {error}</div>;
     }
     else
     {
-
-        section3 =
-            <section className="article-list">
+       // console.log("data",data);
+        return <section className="article-list">
                 <div className="container">
                     <h1 className="justify-center text-[#0a192f] text-lg font-bold">My Work Experience</h1>
 
@@ -98,8 +100,6 @@ const Experience = () => {
     }
 
 
-
-  return section3
 }
 
 export default Experience
