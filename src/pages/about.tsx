@@ -58,7 +58,7 @@ const About = () => {
             skills.push(skill);
         }
 
-        console.log("skills",skills)
+
 
         section3 =
             <section className="article-list">

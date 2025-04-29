@@ -1,20 +1,45 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import Skill from '@/models/Skill';
+import jwt from 'jsonwebtoken';
 import connectDB from '@/lib/connectDB';
 
-const USER = process.env.BASIC_AUTH_USER;
-const PASS = process.env.BASIC_AUTH_PASSWORD;
+
+const JWT_USER = process.env.JWT_USER;
+const JWT_ROLE = process.env.JWT_ROLE;
 
 
 const checkAuth = (req: NextApiRequest): boolean => {
+
     const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer')) return false;
+    const token = authHeader.split(' ')[1];
 
-    if (!authHeader || !authHeader.startsWith('Basic ')) return false;
+    if (!token) {
+        return false;
+    }
 
-    const base64Credentials = authHeader.split(' ')[1];
-    const [username, password] = Buffer.from(base64Credentials, 'base64').toString().split(':');
+    try {
+        // Verify JWT Token
+        if (!process.env.JWT_SECRET) {
+            throw new Error('JWT_SECRET is not defined in environment variables.');
+        }
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-    return username === USER && password === PASS;
+        // ดึงข้อมูลจาก decoded payload (userId, role)
+        if (typeof decoded !== 'string' ) {
+
+
+            const {userId, role} = decoded;
+
+            return userId===JWT_USER && role===JWT_ROLE;
+        }
+        else return false;
+
+
+    }
+    catch{
+        return false;
+    }
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {

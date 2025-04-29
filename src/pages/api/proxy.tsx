@@ -1,4 +1,5 @@
 import axios from 'axios';
+import jwt from 'jsonwebtoken';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
@@ -13,19 +14,29 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
 
     const apiUrl = process.env.PORTFOLIO_API_URL;
-    const username = process.env.PORTFOLIO_API_USER;
-    const password = process.env.PORTFOLIO_API_PASSWORD;
+    const JWT_USER = process.env.JWT_USER;
+    const JWT_ROLE = process.env.JWT_ROLE;
+    const JWT_SECRET= process.env.JWT_SECRET;
 
-    console.log("url", apiUrl);
-    console.log("user", username);
+
 
     const targetUrl = `${apiUrl}${path.startsWith('/') ? path : '/' + path}`;
 
     try {
+        if (!JWT_SECRET) {
+            throw new Error('JWT_SECRET is not defined in environment variables.');
+        }
+        const token = jwt.sign(
+            { userId: JWT_USER,  role: JWT_ROLE},
+            JWT_SECRET,
+            { expiresIn: '10m' }
+        );
+
+
         const axiosResponse = await axios.get(targetUrl, {
             headers: {
                 Authorization:
-                    'Basic ' + Buffer.from(`${username}:${password}`).toString('base64'),
+                    `Bearer ${token}`,
                 'Content-Type': 'application/json',
                 ...(req.headers.cookie && { cookie: req.headers.cookie }),
             },

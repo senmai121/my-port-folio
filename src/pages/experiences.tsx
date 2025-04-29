@@ -57,7 +57,7 @@ const Experience = () => {
     }
     else
     {
-        console.log("data",data);
+
         section3 =
             <section className="article-list">
                 <div className="container">
