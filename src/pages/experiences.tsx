@@ -80,9 +80,10 @@ const Experience = () => {
                                             className="mt-2 text-gray-800"
                                             dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.description) }}
                                         />
-                                        <p className="mt-2">
+                                        <br/>
+                                        <p className="mt-2 text-gray-800">
 
-                                            <strong>Skill Used :</strong>
+                                            <strong>Skills Used :</strong>
                                             {post.skills?.map((skill) =>
                                                 (
                                                     <span key={skill.name+"_space"}><span key={skill.name} className="rounded-xl bg-yellow-200 border border-yellow-300"> &nbsp;{skill.name}&nbsp; </span>&nbsp;</span>
