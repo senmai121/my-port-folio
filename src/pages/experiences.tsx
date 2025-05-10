@@ -53,7 +53,7 @@ const Experience = () => {
 
 
     if (loading) {
-        return <div className="text-lg text-black">Loading Job Experience...</div>;
+        return <div className="text-lg text-black">Loading Work Experiences...</div>;
     }
     else if (error) {
         return <div>Error: {error}</div>;
@@ -63,7 +63,7 @@ const Experience = () => {
        // console.log("data",data);
         return <section className="article-list">
                 <div className="container">
-                    <h1 className="justify-center text-[#0a192f] text-lg font-bold">My Work Experience</h1>
+                    <h1 className="justify-center text-[#0a192f] text-lg font-bold">My Work Experiences</h1>
 
                         {data?.map((post) => (
 
