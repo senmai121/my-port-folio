@@ -150,7 +150,7 @@ const About = () => {
                             </div>
                             <hr className="border-gray-300"/>
                             <p className="m-4">
-                               <li><a href="/doc/Kanachai Niyomslipchai-NetSuite Certified SuiteFoundation.pdf">Netsuite Suitefoundation 2024-2025</a></li>
+                               <li><a href="/doc/Kanachai Niyomslipchai-NetSuite Certified SuiteFoundation.pdf">Netsuite Suitefoundation</a></li>
                             </p>
 
 
