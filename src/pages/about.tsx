@@ -105,11 +105,13 @@ const About = () => {
                             </div>
                             <hr className="border-gray-300"/>
                             <u className="no-underline m-4">
-                                <li>Experiences in C# ASP.net Software Development and Design for about 10+ years but open to learn a new technologies</li>
-                                <li>Experiences in cloud-base ERP software (Oracle Netsuite) customization called for 6+ years</li>
-                                <li>Participated in almost process of SDLC (Requirement Gathering, Prototyping, Development, UAT and User Training) so I also have the skills of Designing and Analyzing</li>
-                                <li>Documentations, presentations and supporting for almost systems that I developed</li>
-                                <li>Usually work with complicate business process</li>
+                                <li>Over 10 years of hands-on experience in C# ASP.NET development with strong system design skills.</li>
+                                <li>6+ years specializing in Oracle NetSuite ERP customization using SuiteScript and JavaScript.</li>
+                                <li>Full SDLC involvement: requirements gathering, prototyping, development, UAT, training, and documentation.</li>
+                                <li>Skilled in translating complex business processes into technical solutions.</li>
+                                <li>Strong focus on team collaboration, mentoring, and process improvement.</li>
+                                <li>Highly adaptable and always eager to learn new technologies.</li>
+
                             </u>
                         </div>
                     </div><br/>
