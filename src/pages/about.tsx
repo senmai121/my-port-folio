@@ -104,7 +104,7 @@ const About = () => {
 
                             </div>
                             <hr className="border-gray-300"/>
-                            <u className="no-underline m-4">
+                            <ul className="no-underline m-4 list-none">
                                 <li>Over 10 years of hands-on experience in C# ASP.NET development with strong system design skills.</li>
                                 <li>6+ years specializing in Oracle NetSuite ERP customization using SuiteScript and JavaScript.</li>
                                 <li>Full SDLC involvement: requirements gathering, prototyping, development, UAT, training, and documentation.</li>
@@ -112,7 +112,7 @@ const About = () => {
                                 <li>Strong focus on team collaboration, mentoring, and process improvement.</li>
                                 <li>Highly adaptable and always eager to learn new technologies.</li>
 
-                            </u>
+                            </ul>
                         </div>
                     </div><br/>
 
@@ -151,9 +151,9 @@ const About = () => {
 
                             </div>
                             <hr className="border-gray-300"/>
-                            <p className="m-4">
+                            <ul className="m-4 list-none">
                                <li><a href="/doc/Kanachai Niyomslipchai-NetSuite Certified SuiteFoundation.pdf">Netsuite Suitefoundation</a></li>
-                            </p>
+                            </ul>
 
 
                         </div>
