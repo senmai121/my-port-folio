@@ -1,5 +1,7 @@
 import React from 'react';
 import MainLayout from "@/components/MainLayout";
+
+export const dynamic = 'force-dynamic';
 import connectDB from '@/lib/connectDB';
 import JobExperience from '@/models/JobExperience';
 import Skill from '@/models/Skill';
