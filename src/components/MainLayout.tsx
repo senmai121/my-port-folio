@@ -6,19 +6,24 @@ import "../app/globals.css"
 
 import { useState } from 'react';
 import Image from 'next/image';
-import Experience from "@/pages/experiences";
-import About from "@/pages/about";
+import Experience, { JobExperienceType } from "@/components/experiences";
+import About, { SkillType } from "@/components/about";
 import {Linkedin  } from 'lucide-react';
 
-export default function Home() {
+interface MainLayoutProps {
+    jobExperiences: JobExperienceType[];
+    skills: SkillType[];
+}
+
+export default function Home({ jobExperiences, skills }: MainLayoutProps) {
     const [activeSection, setActiveSection] = useState<'about' | 'experiences'>('about');
 
     const renderSection = () => {
         switch (activeSection) {
             case 'about':
-                return <About />
+                return <About data={skills} />
             case 'experiences':
-                return <Experience />
+                return <Experience data={jobExperiences} />
 
         }
     };

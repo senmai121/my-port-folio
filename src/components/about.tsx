@@ -1,7 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
-
+import React from 'react';
 
 
 export interface SkillType {
@@ -9,53 +7,13 @@ export interface SkillType {
     name: string;
     level: string;
     type: string;
-    createdAt?: Date;
-    updatedAt?: Date;
 }
 
+interface AboutProps {
+    data: SkillType[];
+}
 
-
-
-
-const About = () => {
-    const [data, setData] = useState<SkillType[]>([]);
-    const [loading,setLoading] = useState(false);
-
-
-
-
-
-    useEffect(() => {
-        //fetchData(setData);
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get<SkillType[]>('/api/proxy', {
-                    params: { path: '/skill' },
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error('โหลดข้อมูลไม่สำเร็จ', error);
-
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
-    // if (loading) {
-    //     return <div>Loading...</div>;
-    // }
-    // else if (error) {
-    //     return <div>Error: {error}</div>;
-    // }
-    // else
-    // {
-
-
+const About = ({ data }: AboutProps) => {
         const types =[...new Set(data.map(d=>d.type))];
         const skills =[];
         for(let i=0; i<types.length;i++)
@@ -125,7 +83,6 @@ const About = () => {
 
                             </div>
                             <hr className="border-gray-300"/>
-                            {loading ? <div className="m-4">Loading..</div>:
                             <div className="m-4">
                             {skills?.map((skilltype) =>
                                 (
@@ -138,7 +95,6 @@ const About = () => {
                                         <br/></span>
                                 ))}
                             </div>
-                            }
 
                         </div>
                     </div>
@@ -162,15 +118,8 @@ const About = () => {
 
 
 
-
-
                 </div>
             </section>
-
-
-
-
-
 }
 
 export default About

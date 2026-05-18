@@ -1,17 +1,11 @@
 import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-
-dotenv.config();  // โหลดค่า environment variables จาก .env
 
 const mongoUri = process.env.MONGODB_URI
 
 const connectDB = async () => {
     try {
         if (mongoose.connection.readyState === 0) {
-            await mongoose.connect(mongoUri, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            });
+            await mongoose.connect(mongoUri);
             console.log("MongoDB connected successfully");
         } else {
             console.log("Already connected to MongoDB");

@@ -1,6 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
-import axios from "axios";
+import React from 'react';
 import DOMPurify from 'dompurify';
 
 
@@ -10,58 +9,21 @@ export interface Skill {
 }
 
 export interface JobExperienceType {
-    _id?: string;             // เพราะเวลา fetch จาก MongoDB จะมี _id
+    _id?: string;
     position: string;
     company: string;
     description: string;
     start: string;
     end: string;
     skills: Skill[];
-    createdAt?: Date;
-    updatedAt?: Date;
 }
 
+interface ExperienceProps {
+    data: JobExperienceType[];
+}
 
-
-const Experience = () => {
-    const [data, setData] = useState<JobExperienceType[]>([]);
-    const [loading,setLoading] = useState(false);
-    const [error,setError] = useState(false);
-
-
-
-
-    useEffect(() => {
-        //fetchData(setData);
-        const fetchData = async () => {
-            setLoading(true);
-            try {
-                const response = await axios.get<JobExperienceType[]>('/api/proxy', {
-                    params: { path: '/job-experience' },
-                });
-                setData(response.data);
-            } catch (error) {
-                console.error('โหลดข้อมูลไม่สำเร็จ', error);
-                setError(true);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
-    if (loading) {
-        return <div className="text-lg text-black">Loading Work Experiences...</div>;
-    }
-    else if (error) {
-        return <div>Error: {error}</div>;
-    }
-    else
-    {
-       // console.log("data",data);
-        return <section className="article-list">
+const Experience = ({ data }: ExperienceProps) => {
+    return <section className="article-list">
                 <div className="container">
                     <h1 className="justify-center text-[#0a192f] text-lg font-bold">My Work Experiences</h1>
 
@@ -98,9 +60,6 @@ const Experience = () => {
 
                 </div>
             </section>
-    }
-
-
 }
 
 export default Experience
